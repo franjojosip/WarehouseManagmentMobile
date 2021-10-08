@@ -1,0 +1,48 @@
+ext {
+    // Plugins
+    plugin_app = "com.android.application"  // apply plugin: plugin_app
+    plugin_library = "com.android.library" // apply plugin: plugin_lib
+    plugin_kotlin = "kotlin-android" // apply plugin: plugin_kotlin
+    plugin_kotlin_kapt = "kotlin-kapt"  // apply plugin: plugin_kotlin_kapt
+
+    //  Build configuration
+    compileVersion = 30 // compileSdkVersion compileVersion
+    minTarget = 23 // minSdkVersion minTarget
+    targetVersion = 30 // targetSdkVersion targetVersion
+    toolVersion = "30.0.2"
+    javaCompatibility = 11
+
+    //  Kotlin
+    kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Android
+    appCompat_v = "1.3.1"
+    appCompat = "androidx.appcompat:appcompat:$appCompat_v"
+    androidXCore_v = '1.6.0'
+    androidXCore = "androidx.core:core-ktx:$androidXCore_v"
+    androidLifecycle_v = '2.3.1'
+    androidLifecycle = "androidx.lifecycle:lifecycle-extensions:$androidLifecycle_v"
+    androidMaterial_v = '1.4.0'
+    androidMaterial = "com.google.android.material:material:$androidMaterial_v"
+    constraintLayout_v = '2.1.1'
+    constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayout_v"
+
+    // Koin
+    koin_v = "2.2.3"
+    koin = "io.insert-koin:koin-android:$koin_v"
+    koinViewModel = "io.insert-koin:koin-androidx-viewmodel:$koin_v"
+
+    // Navigation
+    navigation_v = "2.3.5"
+    nav_fragment = "androidx.navigation:navigation-fragment-ktx:$navigation_v"
+    nav_ui = "androidx.navigation:navigation-ui-ktx:$navigation_v"
+
+    // Gson
+    gson_v = "2.8.8"
+    gson = "com.google.code.gson:gson:$gson_v"
+
+    // Retrofit
+    retrofit_v = "2.9.0"
+    retrofit = "com.squareup.retrofit2:retrofit:$retrofit_v"
+    retrofit_gson = "com.squareup.retrofit2:converter-gson:$retrofit_v"
+}

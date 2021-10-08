@@ -1,0 +1,26 @@
+apply from : '../dependencies.gradle'
+apply plugin: plugin_library
+apply plugin: plugin_kotlin
+apply plugin: plugin_kotlin_kapt
+
+android {
+    compileSdkVersion compileVersion
+    buildToolsVersion toolVersion
+    defaultConfig {
+        minSdkVersion minTarget
+        targetSdkVersion targetVersion
+    }
+    compileOptions {
+        sourceCompatibility = java_compatibility
+        targetCompatibility = java_compatibility
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+}
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    // App modules
+    implementation project(":app_common")
+}

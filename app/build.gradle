@@ -1,0 +1,77 @@
+apply from: "../dependencies.gradle"
+apply plugin: plugin_app
+apply plugin: plugin_kotlin
+apply plugin: plugin_kotlin_kapt
+
+android {
+    compileSdkVersion compileVersion
+    buildToolsVersion toolVersion
+    flavorDimensions "environment"
+
+    defaultConfig {
+        minSdk minTarget
+        targetSdk targetVersion
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        prod {
+            buildConfigField "String", "API_URL", '"https://apiurl.com"'
+            dimension "environment"
+        }
+        store {
+            buildConfigField "String", "API_URL", '"https://apiurl.com"'
+            dimension "environment"
+        }
+        dev {
+            buildConfigField "String", "API_URL", '"https://apiurl.com"'
+            dimension "environment"
+        }
+    }
+
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+
+        sourceCompatibility = javaCompatibility
+        targetCompatibility = javaCompatibility
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Add app modules here
+    implementation project(":app_common")
+
+    //Add app module dependencies here (implementation)
+    implementation appCompat
+    implementation androidXCore
+    implementation androidXCore
+    implementation androidMaterial
+    implementation constraintLayout
+
+    implementation koin
+    implementation nav_fragment
+    implementation nav_ui
+    implementation gson
+    implementation retrofit
+    implementation retrofit_gson
+}

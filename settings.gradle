@@ -1,0 +1,3 @@
+rootProject.name = "Warehouse Managment"
+include ':app'
+include ':app_common'
