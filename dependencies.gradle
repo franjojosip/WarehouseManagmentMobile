@@ -34,8 +34,8 @@ ext {
 
     // Navigation
     navigation_v = "2.3.5"
-    nav_fragment = "androidx.navigation:navigation-fragment-ktx:$navigation_v"
-    nav_ui = "androidx.navigation:navigation-ui-ktx:$navigation_v"
+    navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigation_v"
+    navigationUI = "androidx.navigation:navigation-ui-ktx:$navigation_v"
 
     // Gson
     gson_v = "2.8.8"
@@ -45,4 +45,19 @@ ext {
     retrofit_v = "2.9.0"
     retrofit = "com.squareup.retrofit2:retrofit:$retrofit_v"
     retrofit_gson = "com.squareup.retrofit2:converter-gson:$retrofit_v"
+
+    // Material design
+    material_v = "1.4.0"
+    material_design = "com.google.android.material:material:$material_v"
+
+
+    // Rx
+    rxJava_v = '3.0.6'
+    rxJava = "io.reactivex.rxjava3:rxjava:$rxJava_v"
+    rxAndroid_v = "3.0.0"
+    rxAndroid = "io.reactivex.rxjava3:rxandroid:$rxAndroid_v"
+    rxKotlin_v = '3.0.1'
+    rxKotlin = "io.reactivex.rxjava3:rxkotlin:$rxKotlin_v"
+    rxBindings_v = '4.0.0'
+    rxBindings = "com.jakewharton.rxbinding4:rxbinding:$rxBindings_v"
 }

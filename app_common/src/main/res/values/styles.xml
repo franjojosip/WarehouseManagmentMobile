@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="EditScreenTextInputLayoutStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="colorControlNormal">@color/colorGrayLight60</item>
+        <item name="colorControlActivated">@color/colorGrayLight60</item>
+        <item name="colorControlHighlight">@color/colorGrayLight60</item>
+        <item name="colorAccent">@color/colorGrayLight60</item>
+        <item name="android:textSize">16sp</item>
+        <item name="errorTextAppearance">@style/ErrorTextAppearance</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/colorGrayDark70</item>
+        <item name="placeholderTextAppearance">@style/PlaceHolderTextAppearance</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="editTextBackground">@drawable/rounded_background</item>
+        <item name="backgroundTint">@color/colorGrayLight20</item>
+        <item name="boxCollapsedPaddingTop">7dp</item>
+        <item name="errorTextColor">@color/colorError</item>
+        <item name="android:textColorHint">@color/colorGrayLight60</item>
+        <item name="helperTextTextColor">@color/colorGrayDark70</item>
+        <item name="hintTextColor">@color/colorGrayLight60</item>
+        <item name="placeholderTextColor">@color/colorGrayLight60</item>
+        <item name="errorIconDrawable">@null</item>
+        <item name="passwordToggleTint">@color/colorGrayDark70</item>
+        <item name="minHeight">48dp</item>
+    </style>
+
+    <style name="ErrorTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="HintTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="PlaceHolderTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="HelperTextAppearance" parent="">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="CustomTextInputStyle" parent="@style/Theme.AppCompat">
+        <item name="colorAccent">@color/colorSecondary</item>
+    </style>
+
+</resources>

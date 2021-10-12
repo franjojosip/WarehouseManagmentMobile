@@ -60,6 +60,7 @@ dependencies {
 
     //Add app modules here
     implementation project(":app_common")
+    implementation project(":app_auth")
 
     //Add app module dependencies here (implementation)
     implementation appCompat
@@ -69,8 +70,6 @@ dependencies {
     implementation constraintLayout
 
     implementation koin
-    implementation nav_fragment
-    implementation nav_ui
     implementation gson
     implementation retrofit
     implementation retrofit_gson

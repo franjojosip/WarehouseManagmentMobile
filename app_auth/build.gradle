@@ -1,7 +1,7 @@
-apply from: '../dependencies.gradle'
-apply plugin: plugin_library
-apply plugin: plugin_kotlin
-apply plugin: plugin_kotlin_kapt
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
 
 android {
     compileSdk 30
@@ -32,13 +32,5 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api koin
-    api koinViewModel
-    api androidMaterial
-    api navigationFragment
-    api navigationUI
-    api rxJava
-    api rxKotlin
-    api rxBindings
+    implementation project(":app_common")
 }

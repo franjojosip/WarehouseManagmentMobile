@@ -7,5 +7,5 @@ import org.koin.dsl.module
 
 val appModule = module {
     single<AppSharedPreference> { AppSharedPreferencesImpl(get()) }
-    single { LocaleManager(get<AppSharedPreference>()) }
+    single { LocaleManager(get()) }
 }

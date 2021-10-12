@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_title">Login</string>
+    <string name="login_message">Please sign in to continue</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_email_error">Enter a valid email address (mail@domain.com)</string>
+    <string name="login_password_error">Password must have at least 6 characters</string>
+</resources>
