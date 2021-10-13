@@ -41,4 +41,7 @@ dependencies {
     api rxJava
     api rxKotlin
     api rxBindings
+
+    implementation retrofit
+    api retrofitGson
 }

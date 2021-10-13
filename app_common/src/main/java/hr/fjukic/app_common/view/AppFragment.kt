@@ -1,19 +1,32 @@
 package hr.fjukic.app_common.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
+import hr.fjukic.app_common.delegates.EventDelegate
+import hr.fjukic.app_common.R
+import hr.fjukic.app_common.adapter.ScreenAdapterImpl
+import hr.fjukic.app_common.model.EventUI
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 
-abstract class AppFragment<ViewBinding : ViewDataBinding> : Fragment() {
+abstract class AppFragment<VM : ViewModel, ViewBinding : ViewDataBinding> : Fragment(),
+    EventDelegate {
     abstract val layoutId: Int
+    abstract val viewModel: VM
     lateinit var binding: ViewBinding private set
     private var compositeDisposable = CompositeDisposable()
 
@@ -46,4 +59,29 @@ abstract class AppFragment<ViewBinding : ViewDataBinding> : Fragment() {
             }
         )
     )
+
+    fun setEventDelegate(screenAdapter: ScreenAdapterImpl) {
+        screenAdapter.observe(viewLifecycleOwner, this)
+    }
+
+    override fun showToast(toastUI: EventUI.ToastUI) {
+        Toast.makeText(context, toastUI.message, toastUI.duration).show()
+    }
+
+    override fun showSnackbar(snackbar: EventUI.SnackbarUI) {
+        Snackbar.make(binding.root, snackbar.message, BaseTransientBottomBar.LENGTH_INDEFINITE)
+            .apply {
+                setTextColor(ContextCompat.getColor(binding.root.context, R.color.colorGrayDark70))
+                duration = 5000
+            }.show()
+    }
+
+    override fun showLoader() {}
+    override fun hideLoader() {}
+
+    override fun hideKeyboard() {
+        val inputMethodManager =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(requireView().windowToken, 0)
+    }
 }

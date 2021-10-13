@@ -24,15 +24,15 @@ android {
 
     productFlavors {
         prod {
-            buildConfigField "String", "API_URL", '"https://apiurl.com"'
+            buildConfigField "String", "API_URL", '"https://upravljanjeskladistimaserver.herokuapp.com/"'
             dimension "environment"
         }
         store {
-            buildConfigField "String", "API_URL", '"https://apiurl.com"'
+            buildConfigField "String", "API_URL", '"https://upravljanjeskladistimaserver.herokuapp.com/"'
             dimension "environment"
         }
         dev {
-            buildConfigField "String", "API_URL", '"https://apiurl.com"'
+            buildConfigField "String", "API_URL", '"https://upravljanjeskladistimaserver.herokuapp.com/"'
             dimension "environment"
         }
     }
@@ -72,5 +72,6 @@ dependencies {
     implementation koin
     implementation gson
     implementation retrofit
-    implementation retrofit_gson
+    implementation retrofitGson
+    implementation retrofitAdapter
 }

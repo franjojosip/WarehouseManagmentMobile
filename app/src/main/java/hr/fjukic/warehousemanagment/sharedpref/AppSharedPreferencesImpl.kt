@@ -3,9 +3,10 @@ package hr.fjukic.warehousemanagment.sharedpref
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
+import hr.fjukic.app_common.model.response.User
 import hr.fjukic.app_common.sharedpref.AppSharedPreference
 
-internal class AppSharedPreferencesImpl(applicationContext: Context) :
+internal class AppSharedPreferencesImpl(applicationContext: Context, private val gson: Gson) :
     AppSharedPreference {
     private val defaultSharedPref: SharedPreferences
 
@@ -45,6 +46,12 @@ internal class AppSharedPreferencesImpl(applicationContext: Context) :
         get() = defaultSharedPref.getString(KEY_REFRESH_TOKEN, "")
         set(value) {
             editor { putString(KEY_REFRESH_TOKEN, value) }
+        }
+
+    override var user: User?
+        get() = gson.fromJson(defaultSharedPref.getString(KEY_USER, ""), User::class.java)
+        set(value) {
+            editor { putString(KEY_USER, gson.toJson(value)) }
         }
 
 

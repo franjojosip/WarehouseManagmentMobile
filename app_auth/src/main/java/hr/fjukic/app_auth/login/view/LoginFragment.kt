@@ -2,27 +2,29 @@ package hr.fjukic.app_auth.login.view
 
 import android.os.Bundle
 import android.text.InputFilter
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import hr.fjukic.app_auth.R
 import hr.fjukic.app_auth.databinding.FragmentLoginBinding
 import hr.fjukic.app_auth.login.viewmodel.LoginVM
 import hr.fjukic.app_common.constants.Constants
 import hr.fjukic.app_common.extensions.rxInput
+import hr.fjukic.app_common.model.EventUI
 import hr.fjukic.app_common.view.AppFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
 
-class LoginFragment : AppFragment<FragmentLoginBinding>() {
+class LoginFragment : AppFragment<LoginVM, FragmentLoginBinding>() {
 
     override val layoutId: Int = R.layout.fragment_login
-    private val viewModel: LoginVM by viewModel()
+    override val viewModel: LoginVM by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.loginVM = viewModel
+
+        setEventDelegate(viewModel.screenAdapter)
         setupClickEvents()
         setupObservers()
         setupEmailTextInput()
@@ -54,6 +56,7 @@ class LoginFragment : AppFragment<FragmentLoginBinding>() {
             ?.debounce(Constants.TEXT_INPUT_DEBOUNCE, TimeUnit.MILLISECONDS)?.subscribeToView {
                 viewModel.handleEmailInput(it)
             }
+        binding.passwordATIV.editText?.imeOptions = EditorInfo.IME_ACTION_NEXT
     }
 
     private fun setupPasswordTextInput() {
@@ -64,10 +67,12 @@ class LoginFragment : AppFragment<FragmentLoginBinding>() {
             ?.debounce(Constants.TEXT_INPUT_DEBOUNCE, TimeUnit.MILLISECONDS)?.subscribeToView {
                 viewModel.handlePasswordInput(it)
             }
+        binding.passwordATIV.editText?.imeOptions = EditorInfo.IME_ACTION_DONE
     }
 
     private fun setupClickEvents() {
         binding.btnContinue.setOnClickListener {
+            hideKeyboard()
             viewModel.handleContinueClicked()
         }
     }

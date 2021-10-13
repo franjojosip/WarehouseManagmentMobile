@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorGrayLight60</item>
+        <item name="snackbarStyle">@style/MaterialSnackbarTheme</item>
+    </style>
+
+    <style name="MaterialSnackbarTheme" parent="@style/Widget.MaterialComponents.Snackbar">
+        <item name="android:background">@drawable/custom_snackbar_background</item>
+    </style>
+
     <style name="EditScreenTextInputLayoutStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="colorControlNormal">@color/colorGrayLight60</item>
         <item name="colorControlActivated">@color/colorGrayLight60</item>

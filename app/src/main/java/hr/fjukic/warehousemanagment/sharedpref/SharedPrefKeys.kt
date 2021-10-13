@@ -7,3 +7,4 @@ internal const val KEY_APP_VERSION = "KEY_APP_VERSION"
 
 internal const val KEY_TOKEN = "KEY_TOKEN"
 internal const val KEY_REFRESH_TOKEN = "KEY_REFRESH_TOKEN"
+internal const val KEY_USER = "KEY_USER"

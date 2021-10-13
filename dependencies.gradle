@@ -44,7 +44,8 @@ ext {
     // Retrofit
     retrofit_v = "2.9.0"
     retrofit = "com.squareup.retrofit2:retrofit:$retrofit_v"
-    retrofit_gson = "com.squareup.retrofit2:converter-gson:$retrofit_v"
+    retrofitGson = "com.squareup.retrofit2:converter-gson:$retrofit_v"
+    retrofitAdapter = "com.squareup.retrofit2:adapter-rxjava3:$retrofit_v"
 
     // Material design
     material_v = "1.4.0"
