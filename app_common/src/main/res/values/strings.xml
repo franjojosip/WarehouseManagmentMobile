@@ -6,4 +6,8 @@
     <string name="login_password">Password</string>
     <string name="login_email_error">Enter a valid email address (mail@domain.com)</string>
     <string name="login_password_error">Password must have at least 6 characters</string>
+    <string name="forgot_password">Forgotten password?</string>
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="forgot_password_message">Fill an email input so we can send an email with link to reset password</string>
+    <string name="reset_password">Reset password</string>
 </resources>

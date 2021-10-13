@@ -4,6 +4,7 @@ ext {
     plugin_library = "com.android.library" // apply plugin: plugin_lib
     plugin_kotlin = "kotlin-android" // apply plugin: plugin_kotlin
     plugin_kotlin_kapt = "kotlin-kapt"  // apply plugin: plugin_kotlin_kapt
+    plugin_safe_args = "androidx.navigation.safeargs.kotlin"  // apply plugin: plugin_kotlin_kapt
 
     //  Build configuration
     compileVersion = 30 // compileSdkVersion compileVersion
@@ -36,6 +37,7 @@ ext {
     navigation_v = "2.3.5"
     navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigation_v"
     navigationUI = "androidx.navigation:navigation-ui-ktx:$navigation_v"
+    navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_v"
 
     // Gson
     gson_v = "2.8.8"

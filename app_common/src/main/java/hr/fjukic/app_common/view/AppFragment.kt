@@ -12,6 +12,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavDirections
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import hr.fjukic.app_common.delegates.EventDelegate
@@ -27,7 +30,7 @@ abstract class AppFragment<VM : ViewModel, ViewBinding : ViewDataBinding> : Frag
     EventDelegate {
     abstract val layoutId: Int
     abstract val viewModel: VM
-    lateinit var binding: ViewBinding private set
+    var binding: ViewBinding? = null
     private var compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(
@@ -36,8 +39,13 @@ abstract class AppFragment<VM : ViewModel, ViewBinding : ViewDataBinding> : Frag
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        binding.apply { lifecycleOwner = viewLifecycleOwner }
-        return binding.root
+        binding?.apply { lifecycleOwner = viewLifecycleOwner }
+        return binding?.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
     override fun onDestroy() {
@@ -69,11 +77,13 @@ abstract class AppFragment<VM : ViewModel, ViewBinding : ViewDataBinding> : Frag
     }
 
     override fun showSnackbar(snackbar: EventUI.SnackbarUI) {
-        Snackbar.make(binding.root, snackbar.message, BaseTransientBottomBar.LENGTH_INDEFINITE)
-            .apply {
-                setTextColor(ContextCompat.getColor(binding.root.context, R.color.colorGrayDark70))
-                duration = 5000
-            }.show()
+        binding?.root?.let {
+            Snackbar.make(it, snackbar.message, BaseTransientBottomBar.LENGTH_INDEFINITE)
+                .apply {
+                    setTextColor(ContextCompat.getColor(it.context, R.color.colorGrayDark70))
+                    duration = 3000
+                }.show()
+        }
     }
 
     override fun showLoader() {}
@@ -83,5 +93,9 @@ abstract class AppFragment<VM : ViewModel, ViewBinding : ViewDataBinding> : Frag
         val inputMethodManager =
             requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(requireView().windowToken, 0)
+    }
+
+    override fun navigate(navDirections: NavDirections) {
+        findNavController().navigate(navDirections)
     }
 }

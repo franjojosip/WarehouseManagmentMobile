@@ -1,5 +1,6 @@
 package hr.fjukic.app_common.delegates
 
+import androidx.navigation.NavDirections
 import hr.fjukic.app_common.model.EventUI
 
 interface EventDelegate {
@@ -8,4 +9,5 @@ interface EventDelegate {
     fun showLoader() {}
     fun hideLoader() {}
     fun hideKeyboard() {}
+    fun navigate(navDirections: NavDirections) {}
 }

@@ -9,6 +9,17 @@
         android:id="@+id/loginFragment"
         android:name="hr.fjukic.app_auth.login.view.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_forgot_password"
+            app:destination="@id/forgotPasswordFragment"
+            app:popUpTo="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="hr.fjukic.app_auth.forgotpassword.view.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment"
+        tools:layout="@layout/fragment_forgot_password" />
 
 </navigation>
