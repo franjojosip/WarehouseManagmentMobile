@@ -5,6 +5,7 @@ ext {
     plugin_kotlin = "kotlin-android" // apply plugin: plugin_kotlin
     plugin_kotlin_kapt = "kotlin-kapt"  // apply plugin: plugin_kotlin_kapt
     plugin_safe_args = "androidx.navigation.safeargs.kotlin"  // apply plugin: plugin_kotlin_kapt
+    plugin_parcelize = 'kotlin-parcelize' // apply plugin: plugin_parcelize
 
     //  Build configuration
     compileVersion = 30 // compileSdkVersion compileVersion

@@ -80,7 +80,7 @@ abstract class AppFragment<VM : ViewModel, ViewBinding : ViewDataBinding> : Frag
         binding?.root?.let {
             Snackbar.make(it, snackbar.message, BaseTransientBottomBar.LENGTH_INDEFINITE)
                 .apply {
-                    setTextColor(ContextCompat.getColor(it.context, R.color.colorGrayDark70))
+                    setTextColor(ContextCompat.getColor(it.context, R.color.colorWhite))
                     duration = 3000
                 }.show()
         }

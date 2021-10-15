@@ -22,6 +22,7 @@ class ForgotPasswordFragment : AppFragment<ForgotPasswordVM, FragmentForgotPassw
         super.onViewCreated(view, savedInstanceState)
         binding?.loginVM = viewModel
 
+        setEventDelegate(viewModel.screenAdapter)
         setupClickEvents()
         setupObservers()
         setupEmailTextInput()
@@ -38,8 +39,8 @@ class ForgotPasswordFragment : AppFragment<ForgotPasswordVM, FragmentForgotPassw
         viewModel.screenAdapter.emailUI.observe(viewLifecycleOwner, {
             it?.let {
                 binding?.emailATIV?.apply {
-                    isErrorEnabled = it.isValid.not()
-                    error = if (it.isValid) null else getString(R.string.login_email_error)
+                    isErrorEnabled = it.error != null
+                    error = it.error
                 }
             }
         })

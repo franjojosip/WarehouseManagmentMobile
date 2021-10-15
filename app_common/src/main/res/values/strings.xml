@@ -10,4 +10,6 @@
     <string name="forgot_password_title">Forgot Password</string>
     <string name="forgot_password_message">Fill an email input so we can send an email with link to reset password</string>
     <string name="reset_password">Reset password</string>
+    <string name="reset_password_email_already_sent">Email for password reset has been already sent!</string>
+    <string name="loading_title">Loading, please wait...</string>
 </resources>

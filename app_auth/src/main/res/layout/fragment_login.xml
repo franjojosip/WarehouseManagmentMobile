@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,86 +9,102 @@
             type="hr.fjukic.app_auth.login.viewmodel.LoginVM" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/tvLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:text="@string/login_title"
-            android:textSize="32sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvLoginMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/login_message"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
-
-        <hr.fjukic.app_common.view.AppTextInputView
-            android:id="@+id/emailATIV"
-            style="@style/EditScreenTextInputLayoutStyle"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="56dp"
-            android:hint="@string/login_email"
-            android:inputType="textEmailAddress|textNoSuggestions"
-            app:errorEnabled="false"
-            app:layout_constraintTop_toBottomOf="@+id/tvLoginMessage"
-            app:placeholderText="@string/login_email" />
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
-        <hr.fjukic.app_common.view.AppTextInputView
-            android:id="@+id/passwordATIV"
-            style="@style/EditScreenTextInputLayoutStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="26dp"
-            android:hint="@string/login_password"
-            android:inputType="textPassword"
-            app:endIconMode="password_toggle"
-            app:endIconTint="@color/colorGrayDark70"
-            app:errorEnabled="false"
-            app:layout_constraintTop_toBottomOf="@+id/emailATIV"
-            app:placeholderText="@string/login_password" />
+            <TextView
+                android:id="@+id/tvLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="@string/login_title"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvForgotPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordATIV" />
+            <TextView
+                android:id="@+id/tvLoginMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/login_message"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnContinue"
-            style="@style/MaterialButton.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="26dp"
-            android:enabled="@{loginVM.screenAdapter.isContinueButtonEnabled()}"
-            android:text="@string/login_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword" />
+            <hr.fjukic.app_common.view.AppTextInputView
+                android:id="@+id/emailATIV"
+                style="@style/EditScreenTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="56dp"
+                android:hint="@string/login_email"
+                android:inputType="textEmailAddress"
+                app:errorEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoginMessage"
+                app:placeholderText="@string/login_email" />
 
+            <hr.fjukic.app_common.view.AppTextInputView
+                android:id="@+id/passwordATIV"
+                style="@style/EditScreenTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="26dp"
+                android:hint="@string/login_password"
+                android:inputType="textPassword"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorGrayDark70"
+                app:errorEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/emailATIV"
+                app:placeholderText="@string/login_password" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/passwordATIV" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnContinue"
+                style="@style/MaterialButton.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="26dp"
+                android:enabled="@{loginVM.screenAdapter.isContinueButtonEnabled()}"
+                android:text="@string/login_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword" />
+
+            <include
+                android:id="@+id/loaderLayout"
+                layout="@layout/loader_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

@@ -4,14 +4,17 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.style.ClickableSpan
+import android.util.Log
 import android.view.View
 import com.google.gson.Gson
+import hr.fjukic.app_auth.R
 import hr.fjukic.app_auth.login.adapter.LoginScreenAdapter
 import hr.fjukic.app_auth.login.view.LoginFragmentDirections
 import hr.fjukic.app_common.model.AppTextInputUI
 import hr.fjukic.app_common.model.EventUI
 import hr.fjukic.app_common.model.request.LoginRequest
 import hr.fjukic.app_common.repository.auth.AuthRepository
+import hr.fjukic.app_common.repository.resource.ResourceRepository
 import hr.fjukic.app_common.utils.FieldValidatorUtil
 import hr.fjukic.app_common.viewmodel.AppVM
 import io.reactivex.rxjava3.kotlin.addTo
@@ -19,7 +22,8 @@ import io.reactivex.rxjava3.kotlin.addTo
 class LoginVM(
     override val screenAdapter: LoginScreenAdapter,
     override val gson: Gson,
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val resourceRepository: ResourceRepository
 ) : AppVM() {
 
     fun init(forgotPasswordText: String, color: Int) {
@@ -29,7 +33,7 @@ class LoginVM(
     private fun setupForgotPasswordField(text: String, color: Int) {
         val spannableString = SpannableString(text)
 
-        val clickableSpan = object: ClickableSpan() {
+        val clickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
                 screenAdapter.navigationEvent.postValue(EventUI.NavigateUI(LoginFragmentDirections.actionLoginToForgotPassword()))
             }
@@ -40,7 +44,12 @@ class LoginVM(
             }
         }
 
-        spannableString.setSpan(clickableSpan, 0, spannableString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(
+            clickableSpan,
+            0,
+            spannableString.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
         screenAdapter.forgotPassword.postValue(spannableString)
     }
 
@@ -59,12 +68,13 @@ class LoginVM(
     }
 
     fun handleEmailInput(value: String) {
-        screenAdapter.emailUI.postValue(
-            AppTextInputUI.TextInputUI(
-                value,
-                FieldValidatorUtil.checkIsEmailValid(value)
-            )
-        )
+        var error: String? = null
+        val isEmailValid = FieldValidatorUtil.checkIsEmailValid(value)
+
+        if (isEmailValid.not()) {
+            error = resourceRepository.getString(R.string.login_email_error)
+        }
+        screenAdapter.emailUI.postValue(AppTextInputUI.TextInputUI(value, error))
         screenAdapter.isContinueButtonEnabled.postValue(
             checkFields(
                 value,
@@ -74,12 +84,13 @@ class LoginVM(
     }
 
     fun handlePasswordInput(value: String) {
-        screenAdapter.passwordUI.postValue(
-            AppTextInputUI.TextInputUI(
-                value,
-                FieldValidatorUtil.checkIsPasswordValid(value)
-            )
-        )
+        var error: String? = null
+        val isPasswordValid = FieldValidatorUtil.checkIsPasswordValid(value)
+
+        if (isPasswordValid.not()) {
+            error = resourceRepository.getString(R.string.login_password_error)
+        }
+        screenAdapter.passwordUI.postValue(AppTextInputUI.TextInputUI(value, error))
         screenAdapter.isContinueButtonEnabled.postValue(
             checkFields(
                 screenAdapter.emailUI.value?.value ?: "", value

@@ -34,7 +34,13 @@ interface AppErrorHandler {
             if (errorBody.isEmpty().not()) {
                 try {
                     val errorModel = gson.fromJson(errorBody, ErrorResponse::class.java)
-                    screenAdapter.snackbarUI.postValue(EventUI.SnackbarUI(errorModel.error, LENGTH_LONG))
+                    val errorMessage = errorModel.error ?: errorModel.status
+                    screenAdapter.snackbarUI.postValue(
+                        EventUI.SnackbarUI(
+                            errorMessage ?: "",
+                            LENGTH_LONG
+                        )
+                    )
                 } catch (ex: Exception) {
                     ex.printStackTrace()
                 }
@@ -53,8 +59,12 @@ interface AppErrorHandler {
         onError: (Throwable) -> Unit = {},
         onComplete: () -> Unit = {}
     ): Disposable = this.subscribeBy(onError = {
-        handleError(it)
-        onError(it)
-        it.printStackTrace()
-    }, onNext = onNext, onComplete = onComplete)
+            handleError(it)
+            onError(it)
+            it.printStackTrace()
+            screenAdapter.loaderUI.postValue(EventUI.LoaderUI(false))
+        }, onNext = {
+            onNext(it)
+            screenAdapter.loaderUI.postValue(EventUI.LoaderUI(false))
+        }, onComplete = onComplete)
 }

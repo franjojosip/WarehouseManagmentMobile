@@ -41,16 +41,16 @@ class LoginFragment : AppFragment<LoginVM, FragmentLoginBinding>() {
         viewModel.screenAdapter.emailUI.observe(viewLifecycleOwner, {
             it?.let {
                 binding?.emailATIV?.apply {
-                    isErrorEnabled = it.isValid.not()
-                    error = if (it.isValid) null else getString(R.string.login_email_error)
+                    isErrorEnabled = it.error != null
+                    error = it.error
                 }
             }
         })
         viewModel.screenAdapter.passwordUI.observe(viewLifecycleOwner, {
             it?.let {
                 binding?.passwordATIV?.apply {
-                    isErrorEnabled = it.isValid.not()
-                    error = if (it.isValid) null else getString(R.string.login_password_error)
+                    isErrorEnabled = it.error != null
+                    error = it.error
                 }
             }
         })
@@ -67,7 +67,7 @@ class LoginFragment : AppFragment<LoginVM, FragmentLoginBinding>() {
     private fun setupPasswordTextInput() {
         binding?.passwordATIV?.editText?.apply {
             filters = arrayOf(InputFilter.LengthFilter(Constants.TEXT_INPUT_MAX_LENGTH))
-            imeOptions = EditorInfo.IME_ACTION_NEXT
+            imeOptions = EditorInfo.IME_ACTION_DONE
         }
 
         binding?.passwordATIV?.editText?.rxInput()
@@ -79,7 +79,7 @@ class LoginFragment : AppFragment<LoginVM, FragmentLoginBinding>() {
     private fun setupEmailTextInput() {
         binding?.emailATIV?.editText?.apply {
             filters = arrayOf(InputFilter.LengthFilter(Constants.TEXT_INPUT_MAX_LENGTH))
-            imeOptions = EditorInfo.IME_ACTION_DONE
+            imeOptions = EditorInfo.IME_ACTION_NEXT
         }
 
         binding?.emailATIV?.editText?.rxInput()
@@ -93,5 +93,13 @@ class LoginFragment : AppFragment<LoginVM, FragmentLoginBinding>() {
             hideKeyboard()
             viewModel.handleContinueClicked()
         }
+    }
+
+    override fun showLoader() {
+        binding?.loaderLayout?.visibility = View.VISIBLE
+    }
+
+    override fun hideLoader() {
+        binding?.loaderLayout?.visibility = View.GONE
     }
 }

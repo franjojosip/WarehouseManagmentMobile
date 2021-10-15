@@ -12,6 +12,7 @@
         android:paddingEnd="16dp"
         android:paddingBottom="0dp"
         android:singleLine="true"
+        android:inputType="textNoSuggestions"
         android:textColor="@color/colorGrayDark70"
         android:theme="@style/CustomTextInputStyle" />
 </merge>

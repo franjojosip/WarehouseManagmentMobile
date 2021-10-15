@@ -2,6 +2,7 @@ apply from: '../dependencies.gradle'
 apply plugin: plugin_library
 apply plugin: plugin_kotlin
 apply plugin: plugin_kotlin_kapt
+apply plugin: plugin_parcelize
 
 android {
     compileSdk 30

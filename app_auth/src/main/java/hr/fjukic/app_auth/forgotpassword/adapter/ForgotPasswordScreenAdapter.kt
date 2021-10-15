@@ -7,4 +7,5 @@ import hr.fjukic.app_common.model.AppTextInputUI
 class ForgotPasswordScreenAdapter: ScreenAdapterImpl() {
     val emailUI: MutableLiveData<AppTextInputUI.TextInputUI> by lazy { MutableLiveData() }
     val isResetPasswordEnabled: MutableLiveData<Boolean> by lazy { MutableLiveData() }
+    val isEmailAlreadySent: MutableLiveData<Boolean> by lazy { MutableLiveData() }
 }
