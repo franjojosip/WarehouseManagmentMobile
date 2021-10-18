@@ -2,3 +2,4 @@ rootProject.name = "Warehouse Managment"
 include ':app'
 include ':app_common'
 include ':app_auth'
+include ':app_home'

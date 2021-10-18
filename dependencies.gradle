@@ -64,4 +64,8 @@ ext {
     rxKotlin = "io.reactivex.rxjava3:rxkotlin:$rxKotlin_v"
     rxBindings_v = '4.0.0'
     rxBindings = "com.jakewharton.rxbinding4:rxbinding:$rxBindings_v"
+
+    // ViewPager
+    viewPager_v = '1.0.0'
+    viewPager = "androidx.viewpager2:viewpager2:$viewPager_v"
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="management">Management</string>
+    <string name="explore_warehouse">Feel free to explore warehouses and products</string>
+    <string name="warehouses">Warehouses</string>
+    <string name="stocks">Stocks</string>
+    <string name="products">Products</string>
+    <string name="categories">Categories</string>
+    <string name="subcategories">Subcategories</string>
+    <string name="packagings">Packagings</string>
+    <string name="citites">Cities</string>
+    <string name="locations">Locations</string>
+</resources>

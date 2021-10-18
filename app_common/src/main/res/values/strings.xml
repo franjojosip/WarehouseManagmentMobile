@@ -11,5 +11,17 @@
     <string name="forgot_password_message">Fill an email input so we can send an email with link to reset password</string>
     <string name="reset_password">Reset password</string>
     <string name="reset_password_email_already_sent">Email for password reset has been already sent!</string>
-    <string name="loading_title">Loading, please wait...</string>
+    <string name="loading_title">Loading, please wait…</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="stats">Stats</string>
+    <string name="see_more">See more</string>
+    <string name="header_title">Hi, %s</string>
+    <string name="total_employees">Total employees: %s</string>
+    <string name="total_entries">Total entries: %s</string>
+    <string name="total_receipts">Total receipts: %s</string>
+    <string name="total_stocktakings">Total stocktakings: %s</string>
+    <string name="total_employees_description">Total employees in warehouses</string>
+    <string name="total_entries_description">Total entries in last month</string>
+    <string name="total_reciepts_description">Total reciepts in last month\"</string>
+    <string name="total_stoctakings_description">Total stocktakings in last month</string>
 </resources>

@@ -62,6 +62,7 @@ dependencies {
     //Add app modules here
     implementation project(":app_common")
     implementation project(":app_auth")
+    implementation project(":app_home")
 
     //Add app module dependencies here (implementation)
     implementation appCompat
