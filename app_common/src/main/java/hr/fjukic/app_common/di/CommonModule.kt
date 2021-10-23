@@ -1,5 +1,7 @@
 package hr.fjukic.app_common.di
 
+import hr.fjukic.app_common.repository.home.HomeRepository
+import hr.fjukic.app_common.repository.home.HomeRepositoryImpl
 import hr.fjukic.app_common.repository.resource.ResourceRepository
 import hr.fjukic.app_common.repository.resource.ResourceRepositoryImpl
 import hr.fjukic.app_common.repository.user.UserRepository
@@ -13,4 +15,5 @@ val commonModule = module {
     single<ApiRestInterface> { get<Retrofit>().create(ApiRestInterface::class.java) }
     single<ResourceRepository> { ResourceRepositoryImpl(androidContext()) }
     single<UserRepository> { UserRepositoryImpl(get()) }
+    single<HomeRepository> { HomeRepositoryImpl(get(), get()) }
 }

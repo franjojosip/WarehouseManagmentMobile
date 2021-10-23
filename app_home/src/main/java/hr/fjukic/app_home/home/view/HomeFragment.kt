@@ -21,32 +21,24 @@ class HomeFragment : AppFragment<HomeVM, FragmentHomeBinding>() {
         super.onCreate(savedInstanceState)
         homeCardsAdapter = HomeRecyclerViewAdapter(mutableListOf())
         managementTitlesAdapter = HomeRecyclerViewAdapter(mutableListOf())
+
+        viewModel.init()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.init()
         setupObservers()
         setupHomeCardsRecyclerView()
         setupHomeManagementCardsRecyclerView()
     }
 
     private fun setupObservers() {
-        viewModel.screenAdapter.homeCards.observe(viewLifecycleOwner, {
-            it?.let {
-                homeCardsAdapter.setupData(it)
-            }
-        })
-        viewModel.screenAdapter.managementTitles.observe(viewLifecycleOwner, {
-            it?.let {
-                managementTitlesAdapter.setupData(it)
-            }
-        })
-        viewModel.screenAdapter.headerTitle.observe(viewLifecycleOwner, {
-            it?.let {
-                binding?.headerProfile?.tvProfile?.text = it
-            }
-        })
+        viewModel.screenAdapter.homeCards.observeWithNotNull {
+            homeCardsAdapter.setupData(it)
+        }
+        viewModel.screenAdapter.managementTitles.observeWithNotNull {
+            managementTitlesAdapter.setupData(it)
+        }
     }
 
     private fun setupHomeManagementCardsRecyclerView() {
@@ -62,5 +54,13 @@ class HomeFragment : AppFragment<HomeVM, FragmentHomeBinding>() {
         val pagerSnapHelper = PagerSnapHelper()
         pagerSnapHelper.attachToRecyclerView(binding?.recyclerView)
         binding?.recyclerView?.scrollToPosition(1)
+    }
+
+    override fun showLoader() {
+        binding?.loaderLayout?.visibility = View.VISIBLE
+    }
+
+    override fun hideLoader() {
+        binding?.loaderLayout?.visibility = View.GONE
     }
 }

@@ -15,16 +15,21 @@ import hr.fjukic.app_common.model.EventUI
 import hr.fjukic.app_common.model.request.LoginRequest
 import hr.fjukic.app_common.repository.auth.AuthRepository
 import hr.fjukic.app_common.repository.resource.ResourceRepository
+import hr.fjukic.app_common.repository.user.UserRepository
+import hr.fjukic.app_common.router.AppRouter
+import hr.fjukic.app_common.router.NavDirectionsWrapper
 import hr.fjukic.app_common.utils.FieldValidatorUtil
 import hr.fjukic.app_common.viewmodel.AppVM
 import io.reactivex.rxjava3.kotlin.addTo
 
 class LoginVM(
+    router: AppRouter,
     override val screenAdapter: LoginScreenAdapter,
     override val gson: Gson,
     private val authRepository: AuthRepository,
+    private val userRepository: UserRepository,
     private val resourceRepository: ResourceRepository
-) : AppVM() {
+) : AppVM(router) {
 
     fun init(forgotPasswordText: String, color: Int) {
         setupForgotPasswordField(forgotPasswordText, color)
@@ -35,7 +40,7 @@ class LoginVM(
 
         val clickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
-                screenAdapter.navigationEvent.postValue(EventUI.NavigateUI(LoginFragmentDirections.actionLoginToForgotPassword()))
+                router.navigationEvent.postValue(NavDirectionsWrapper(LoginFragmentDirections.actionLoginToForgotPassword()))
             }
 
             override fun updateDrawState(ds: TextPaint) {
@@ -62,7 +67,9 @@ class LoginVM(
             authRepository.login(LoginRequest(email, password))
                 .subscribeIO()
                 .observeMain()
-                .subscribeObservable()
+                .subscribeObservable(onNext = {
+                    router.navigationEvent.postValue(NavDirectionsWrapper(LoginFragmentDirections.actionLoginToMainScreenContainer()))
+                })
                 .addTo(compositeDisposable)
         }
     }
@@ -96,6 +103,12 @@ class LoginVM(
                 screenAdapter.emailUI.value?.value ?: "", value
             )
         )
+    }
+
+    fun handleCheckIsUserSignedIn() {
+        if (userRepository.getUser() != null) {
+            router.navigationEvent.postValue(NavDirectionsWrapper(LoginFragmentDirections.actionLoginToMainScreenContainer()))
+        }
     }
 
     private fun checkFields(

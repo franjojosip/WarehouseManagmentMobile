@@ -22,6 +22,6 @@
     <string name="total_stocktakings">Total stocktakings: %s</string>
     <string name="total_employees_description">Total employees in warehouses</string>
     <string name="total_entries_description">Total entries in last month</string>
-    <string name="total_reciepts_description">Total reciepts in last month\"</string>
+    <string name="total_reciepts_description">Total reciepts in last month</string>
     <string name="total_stoctakings_description">Total stocktakings in last month</string>
 </resources>

@@ -11,27 +11,30 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
 import androidx.navigation.NavDirections
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
-import hr.fjukic.app_common.delegates.EventDelegate
 import hr.fjukic.app_common.R
-import hr.fjukic.app_common.adapter.ScreenAdapterImpl
+import hr.fjukic.app_common.delegates.EventDelegate
 import hr.fjukic.app_common.model.EventUI
+import hr.fjukic.app_common.router.NavigationController
+import hr.fjukic.app_common.viewmodel.AppVM
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
-abstract class AppFragment<VM : ViewModel, ViewBinding : ViewDataBinding> : Fragment(),
+abstract class AppFragment<VM : AppVM, ViewBinding : ViewDataBinding> : Fragment(),
     EventDelegate {
     abstract val layoutId: Int
     abstract val viewModel: VM
     var binding: ViewBinding? = null
     private var compositeDisposable = CompositeDisposable()
+    open val navigationController: NavigationController by inject { parametersOf(this) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +44,12 @@ abstract class AppFragment<VM : ViewModel, ViewBinding : ViewDataBinding> : Frag
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding?.apply { lifecycleOwner = viewLifecycleOwner }
         return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.router.observe(viewLifecycleOwner, navigationController)
+        viewModel.screenAdapter.observe(viewLifecycleOwner, this)
     }
 
     override fun onDestroyView() {
@@ -68,9 +77,8 @@ abstract class AppFragment<VM : ViewModel, ViewBinding : ViewDataBinding> : Frag
         )
     )
 
-    fun setEventDelegate(screenAdapter: ScreenAdapterImpl) {
-        screenAdapter.observe(viewLifecycleOwner, this)
-    }
+    fun <T> LiveData<T>.observeWithNotNull(observer: (T) -> Unit) =
+        this.observe(viewLifecycleOwner) { it?.let(observer) }
 
     override fun showToast(toastUI: EventUI.ToastUI) {
         Toast.makeText(context, toastUI.message, toastUI.duration).show()

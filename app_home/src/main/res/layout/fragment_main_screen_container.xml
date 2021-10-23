@@ -6,13 +6,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/headerProfile"
+            layout="@layout/header_profile" />
+
+
         <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/bottomNavFragmentContainerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:tag="tabNavFragment"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/headerProfile"
+            app:navGraph="@navigation/navigation_home" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

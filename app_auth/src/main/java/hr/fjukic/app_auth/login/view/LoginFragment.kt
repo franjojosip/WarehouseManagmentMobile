@@ -6,7 +6,6 @@ import android.text.method.LinkMovementMethod
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.content.ContextCompat
-import androidx.navigation.NavDirections
 import hr.fjukic.app_auth.R
 import hr.fjukic.app_auth.databinding.FragmentLoginBinding
 import hr.fjukic.app_auth.login.viewmodel.LoginVM
@@ -21,16 +20,18 @@ class LoginFragment : AppFragment<LoginVM, FragmentLoginBinding>() {
     override val layoutId: Int = R.layout.fragment_login
     override val viewModel: LoginVM by viewModel()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding?.loginVM = viewModel
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.handleCheckIsUserSignedIn()
         viewModel.init(
             getString(R.string.forgot_password),
             ContextCompat.getColor(requireContext(), R.color.colorPrimary)
         )
+    }
 
-        setEventDelegate(viewModel.screenAdapter)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding?.loginVM = viewModel
         setupClickEvents()
         setupObservers()
         setupEmailTextInput()
@@ -38,30 +39,24 @@ class LoginFragment : AppFragment<LoginVM, FragmentLoginBinding>() {
     }
 
     private fun setupObservers() {
-        viewModel.screenAdapter.emailUI.observe(viewLifecycleOwner, {
-            it?.let {
-                binding?.emailATIV?.apply {
-                    isErrorEnabled = it.error != null
-                    error = it.error
-                }
+        viewModel.screenAdapter.emailUI.observeWithNotNull {
+            binding?.emailATIV?.apply {
+                isErrorEnabled = it.error != null
+                error = it.error
             }
-        })
-        viewModel.screenAdapter.passwordUI.observe(viewLifecycleOwner, {
-            it?.let {
-                binding?.passwordATIV?.apply {
-                    isErrorEnabled = it.error != null
-                    error = it.error
-                }
+        }
+        viewModel.screenAdapter.passwordUI.observeWithNotNull {
+            binding?.passwordATIV?.apply {
+                isErrorEnabled = it.error != null
+                error = it.error
             }
-        })
-        viewModel.screenAdapter.forgotPassword.observe(viewLifecycleOwner, {
-            it?.let {
-                binding?.tvForgotPassword?.apply {
-                    text = it
-                    movementMethod = LinkMovementMethod.getInstance()
-                }
+        }
+        viewModel.screenAdapter.forgotPassword.observeWithNotNull {
+            binding?.tvForgotPassword?.apply {
+                text = it
+                movementMethod = LinkMovementMethod.getInstance()
             }
-        })
+        }
     }
 
     private fun setupPasswordTextInput() {

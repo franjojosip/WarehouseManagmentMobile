@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/navigation_main_container">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_main_container"
+    app:startDestination="@+id/navigation_home">
+
+    <include app:graph="@navigation/navigation_home" />
+
+    <action
+        android:id="@+id/action_global_to_home"
+        app:destination="@id/navigation_home" />
 
 </navigation>

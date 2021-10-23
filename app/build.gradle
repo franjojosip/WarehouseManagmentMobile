@@ -25,15 +25,15 @@ android {
 
     productFlavors {
         prod {
-            buildConfigField "String", "API_URL", '"https://upravljanjeskladistimaserver.herokuapp.com/"'
+            buildConfigField "String", "API_URL", '"http://upravljanjeskladistimaserver.herokuapp.com/"'
             dimension "environment"
         }
         store {
-            buildConfigField "String", "API_URL", '"https://upravljanjeskladistimaserver.herokuapp.com/"'
+            buildConfigField "String", "API_URL", '"http://upravljanjeskladistimaserver.herokuapp.com/"'
             dimension "environment"
         }
         dev {
-            buildConfigField "String", "API_URL", '"https://upravljanjeskladistimaserver.herokuapp.com/"'
+            buildConfigField "String", "API_URL", '"http://upravljanjeskladistimaserver.herokuapp.com/"'
             dimension "environment"
         }
     }

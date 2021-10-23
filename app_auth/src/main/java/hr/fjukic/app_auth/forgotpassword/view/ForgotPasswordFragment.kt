@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.text.InputFilter
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import hr.fjukic.app_auth.R
 import hr.fjukic.app_auth.databinding.FragmentForgotPasswordBinding
 import hr.fjukic.app_auth.forgotpassword.viewmodel.ForgotPasswordVM
@@ -22,7 +21,6 @@ class ForgotPasswordFragment : AppFragment<ForgotPasswordVM, FragmentForgotPassw
         super.onViewCreated(view, savedInstanceState)
         binding?.loginVM = viewModel
 
-        setEventDelegate(viewModel.screenAdapter)
         setupClickEvents()
         setupObservers()
         setupEmailTextInput()
@@ -36,14 +34,12 @@ class ForgotPasswordFragment : AppFragment<ForgotPasswordVM, FragmentForgotPassw
     }
 
     private fun setupObservers() {
-        viewModel.screenAdapter.emailUI.observe(viewLifecycleOwner, {
-            it?.let {
-                binding?.emailATIV?.apply {
-                    isErrorEnabled = it.error != null
-                    error = it.error
-                }
+        viewModel.screenAdapter.emailUI.observeWithNotNull {
+            binding?.emailATIV?.apply {
+                isErrorEnabled = it.error != null
+                error = it.error
             }
-        })
+        }
     }
 
     private fun setupEmailTextInput() {

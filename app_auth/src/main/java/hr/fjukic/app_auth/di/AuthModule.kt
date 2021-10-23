@@ -12,8 +12,8 @@ import org.koin.dsl.module
 val authModule = module {
     factory { LoginScreenAdapter() }
     factory<AuthRepository> { AuthRepositoryImpl(get(), get()) }
-    viewModel { LoginVM(get(), get(), get(), get()) }
+    viewModel { LoginVM(get(), get(), get(), get(), get(), get()) }
 
     factory { ForgotPasswordScreenAdapter() }
-    viewModel { ForgotPasswordVM(get(), get(), get(), get()) }
+    viewModel { ForgotPasswordVM(get(), get(), get(), get(), get()) }
 }

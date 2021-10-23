@@ -13,7 +13,12 @@
         <action
             android:id="@+id/action_login_to_forgot_password"
             app:destination="@id/forgotPasswordFragment"
-            app:popUpTo="@id/loginFragment" />
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_login_to_main_screen_container"
+            app:destination="@+id/mainContainerFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

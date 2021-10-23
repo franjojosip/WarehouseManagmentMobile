@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        findNavController(R.id.nav_host_fragment).navigateUp()
+        val navController = findNavController(R.id.nav_host_fragment)
+        if (navController.previousBackStackEntry == null) super.onBackPressed()
+        else navController.navigateUp()
     }
 }
