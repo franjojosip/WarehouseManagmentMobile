@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import hr.fjukic.app_auth.di.authModule
 import hr.fjukic.app_common.di.commonModule
 import hr.fjukic.app_home.di.homeModule
+import hr.fjukic.app_single_page.di.singlePageModule
 import hr.fjukic.warehousemanagment.di.appModule
 import hr.fjukic.warehousemanagment.localization.LocaleManager
 import org.koin.android.ext.android.get
@@ -36,7 +37,8 @@ class BaseApp : Application() {
             appModule,
             commonModule,
             authModule,
-            homeModule
+            homeModule,
+            singlePageModule
         )
     }
 }

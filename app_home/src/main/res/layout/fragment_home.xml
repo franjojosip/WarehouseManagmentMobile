@@ -5,12 +5,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/colorWhite">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:fillViewport="true"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -85,29 +85,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewManagement"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginVertical="20dp"
-                    android:nestedScrollingEnabled="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvOthers" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
-        <include
+        <hr.fjukic.app_common.view.LoaderView
             android:id="@+id/loaderLayout"
-            layout="@layout/loader_layout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:visibility="gone" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

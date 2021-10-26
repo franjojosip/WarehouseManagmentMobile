@@ -8,6 +8,6 @@
     <string name="categories">Categories</string>
     <string name="subcategories">Subcategories</string>
     <string name="packagings">Packagings</string>
-    <string name="citites">Cities</string>
+    <string name="cities">Cities</string>
     <string name="locations">Locations</string>
 </resources>

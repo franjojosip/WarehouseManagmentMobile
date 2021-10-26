@@ -6,7 +6,7 @@ import hr.fjukic.app_auth.forgotpassword.adapter.ForgotPasswordScreenAdapter
 import hr.fjukic.app_common.model.AppTextInputUI
 import hr.fjukic.app_common.model.EventUI
 import hr.fjukic.app_common.model.request.ResetPasswordRequest
-import hr.fjukic.app_common.repository.auth.AuthRepository
+import hr.fjukic.app_common.repository.AuthRepository
 import hr.fjukic.app_common.repository.resource.ResourceRepository
 import hr.fjukic.app_common.router.AppRouter
 import hr.fjukic.app_common.utils.FieldValidatorUtil
@@ -14,12 +14,12 @@ import hr.fjukic.app_common.viewmodel.AppVM
 import io.reactivex.rxjava3.kotlin.addTo
 
 class ForgotPasswordVM(
-    router: AppRouter,
+    override val router: AppRouter,
     override val screenAdapter: ForgotPasswordScreenAdapter,
     override val gson: Gson,
     private val authRepository: AuthRepository,
     private val resourceRepository: ResourceRepository
-) : AppVM(router) {
+) : AppVM() {
 
     fun handleEmailInput(value: String) {
         var error: String? = null

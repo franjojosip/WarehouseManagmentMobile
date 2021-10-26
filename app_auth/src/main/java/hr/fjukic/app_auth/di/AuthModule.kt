@@ -4,8 +4,8 @@ import hr.fjukic.app_auth.forgotpassword.adapter.ForgotPasswordScreenAdapter
 import hr.fjukic.app_auth.forgotpassword.viewmodel.ForgotPasswordVM
 import hr.fjukic.app_auth.login.adapter.LoginScreenAdapter
 import hr.fjukic.app_auth.login.viewmodel.LoginVM
-import hr.fjukic.app_common.repository.auth.AuthRepository
-import hr.fjukic.app_common.repository.auth.AuthRepositoryImpl
+import hr.fjukic.app_common.repository.AuthRepository
+import hr.fjukic.app_common.repository.AuthRepositoryImpl
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

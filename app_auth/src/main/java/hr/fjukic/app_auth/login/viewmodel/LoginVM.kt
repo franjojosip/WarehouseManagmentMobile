@@ -4,7 +4,6 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.style.ClickableSpan
-import android.util.Log
 import android.view.View
 import com.google.gson.Gson
 import hr.fjukic.app_auth.R
@@ -13,7 +12,7 @@ import hr.fjukic.app_auth.login.view.LoginFragmentDirections
 import hr.fjukic.app_common.model.AppTextInputUI
 import hr.fjukic.app_common.model.EventUI
 import hr.fjukic.app_common.model.request.LoginRequest
-import hr.fjukic.app_common.repository.auth.AuthRepository
+import hr.fjukic.app_common.repository.AuthRepository
 import hr.fjukic.app_common.repository.resource.ResourceRepository
 import hr.fjukic.app_common.repository.user.UserRepository
 import hr.fjukic.app_common.router.AppRouter
@@ -23,13 +22,13 @@ import hr.fjukic.app_common.viewmodel.AppVM
 import io.reactivex.rxjava3.kotlin.addTo
 
 class LoginVM(
-    router: AppRouter,
+    override val router: AppRouter,
     override val screenAdapter: LoginScreenAdapter,
     override val gson: Gson,
     private val authRepository: AuthRepository,
     private val userRepository: UserRepository,
     private val resourceRepository: ResourceRepository
-) : AppVM(router) {
+) : AppVM() {
 
     fun init(forgotPasswordText: String, color: Int) {
         setupForgotPasswordField(forgotPasswordText, color)

@@ -14,22 +14,19 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeFragment : AppFragment<HomeVM, FragmentHomeBinding>() {
     override val layoutId: Int = R.layout.fragment_home
     override val viewModel: HomeVM by viewModel()
-    private lateinit var homeCardsAdapter: HomeRecyclerViewAdapter
-    private lateinit var managementTitlesAdapter: HomeRecyclerViewAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        homeCardsAdapter = HomeRecyclerViewAdapter(mutableListOf())
-        managementTitlesAdapter = HomeRecyclerViewAdapter(mutableListOf())
-
-        viewModel.init()
-    }
+    private val homeCardsAdapter by lazy { HomeRecyclerViewAdapter(mutableListOf()) }
+    private val managementTitlesAdapter by lazy { HomeRecyclerViewAdapter(mutableListOf()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
         setupHomeCardsRecyclerView()
         setupHomeManagementCardsRecyclerView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.init()
     }
 
     private fun setupObservers() {
@@ -42,9 +39,6 @@ class HomeFragment : AppFragment<HomeVM, FragmentHomeBinding>() {
     }
 
     private fun setupHomeManagementCardsRecyclerView() {
-        binding?.recyclerViewManagement?.adapter = managementTitlesAdapter
-        binding?.recyclerViewManagement?.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 
     private fun setupHomeCardsRecyclerView() {
@@ -54,13 +48,5 @@ class HomeFragment : AppFragment<HomeVM, FragmentHomeBinding>() {
         val pagerSnapHelper = PagerSnapHelper()
         pagerSnapHelper.attachToRecyclerView(binding?.recyclerView)
         binding?.recyclerView?.scrollToPosition(1)
-    }
-
-    override fun showLoader() {
-        binding?.loaderLayout?.visibility = View.VISIBLE
-    }
-
-    override fun hideLoader() {
-        binding?.loaderLayout?.visibility = View.GONE
     }
 }

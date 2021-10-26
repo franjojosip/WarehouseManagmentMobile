@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import hr.fjukic.app_common.adapter.ScreenAdapterImpl
 import hr.fjukic.app_common.model.EventUI
 import hr.fjukic.app_common.model.response.ErrorResponse
+import hr.fjukic.app_common.router.AppRouter
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -17,6 +18,7 @@ import java.net.UnknownHostException
 interface AppErrorHandler {
     val screenAdapter: ScreenAdapterImpl
     val gson: Gson
+    val router: AppRouter
 
     fun handleError(throwable: Throwable) {
         when (throwable) {

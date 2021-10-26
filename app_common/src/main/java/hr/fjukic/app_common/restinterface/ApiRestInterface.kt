@@ -18,7 +18,6 @@ interface ApiRestInterface {
     /**
     Authentication routes
      **/
-
     @POST("users/login")
     fun login(@Body loginRequest: LoginRequest): Observable<UserApiResponse>
 

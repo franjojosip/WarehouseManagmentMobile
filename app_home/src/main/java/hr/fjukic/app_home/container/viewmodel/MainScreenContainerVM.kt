@@ -9,12 +9,12 @@ import hr.fjukic.app_home.R
 import hr.fjukic.app_home.container.adapter.MainScreenContainerScreenAdapter
 
 class MainScreenContainerVM(
-    router: AppRouter,
+    override val router: AppRouter,
     override val screenAdapter: MainScreenContainerScreenAdapter,
     override val gson: Gson,
     private val userRepository: UserRepository,
     private val resourceRepository: ResourceRepository
-) : AppVM(router) {
+) : AppVM() {
     fun init() {
         if (screenAdapter.headerTitle.value == null) {
             val user = userRepository.getUser()

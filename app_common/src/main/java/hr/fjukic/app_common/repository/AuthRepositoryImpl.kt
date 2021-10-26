@@ -1,4 +1,4 @@
-package hr.fjukic.app_common.repository.auth
+package hr.fjukic.app_common.repository
 
 import hr.fjukic.app_common.model.request.LoginRequest
 import hr.fjukic.app_common.model.request.ResetPasswordRequest
@@ -7,6 +7,11 @@ import hr.fjukic.app_common.model.response.UserApiResponse
 import hr.fjukic.app_common.restinterface.ApiRestInterface
 import hr.fjukic.app_common.sharedpref.AppSharedPreference
 import io.reactivex.rxjava3.core.Observable
+
+interface AuthRepository {
+    fun login(loginRequest: LoginRequest): Observable<UserApiResponse>
+    fun requestResetPassword(resetPasswordRequest: ResetPasswordRequest): Observable<ApiResponse>
+}
 
 class AuthRepositoryImpl(
     private val sharedPref: AppSharedPreference,

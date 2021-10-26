@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/fab_background"
+            android:backgroundTint="@color/colorFab"
+            android:clickable="true"
+            android:elevation="8dp"
+            android:focusable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/plus_icon"
+            app:fabCustomSize="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="50dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

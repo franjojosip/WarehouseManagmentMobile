@@ -1,7 +1,7 @@
 package hr.fjukic.app_common.di
 
-import hr.fjukic.app_common.repository.home.HomeRepository
-import hr.fjukic.app_common.repository.home.HomeRepositoryImpl
+import hr.fjukic.app_common.repository.HomeRepository
+import hr.fjukic.app_common.repository.HomeRepositoryImpl
 import hr.fjukic.app_common.repository.resource.ResourceRepository
 import hr.fjukic.app_common.repository.resource.ResourceRepositoryImpl
 import hr.fjukic.app_common.repository.user.UserRepository

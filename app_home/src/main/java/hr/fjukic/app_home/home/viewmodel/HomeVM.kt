@@ -3,7 +3,7 @@ package hr.fjukic.app_home.home.viewmodel
 import com.google.gson.Gson
 import hr.fjukic.app_common.model.EventUI
 import hr.fjukic.app_common.model.response.Home
-import hr.fjukic.app_common.repository.home.HomeRepository
+import hr.fjukic.app_common.repository.HomeRepository
 import hr.fjukic.app_common.repository.resource.ResourceRepository
 import hr.fjukic.app_common.router.AppRouter
 import hr.fjukic.app_common.viewmodel.AppVM
@@ -14,12 +14,12 @@ import hr.fjukic.app_home.home.utils.HomeScreenElementType
 import io.reactivex.rxjava3.kotlin.addTo
 
 class HomeVM(
-    router: AppRouter,
+    override val router: AppRouter,
     override val screenAdapter: HomeScreenAdapter,
     override val gson: Gson,
     private val resourceRepository: ResourceRepository,
     private val homeRepository: HomeRepository
-) : AppVM(router) {
+) : AppVM() {
 
     fun init() {
         screenAdapter.loaderUI.postValue(EventUI.LoaderUI(true))
@@ -31,7 +31,7 @@ class HomeVM(
                 .subscribeIO()
                 .observeMain()
                 .subscribeObservable(onNext = {
-                    screenAdapter.homeCards.postValue(getHomeCards(it.data))
+                    screenAdapter.homeCards.postValue(getHomeCards(it))
                 })
                 .addTo(compositeDisposable)
         } else {
@@ -41,14 +41,12 @@ class HomeVM(
 
     private fun getManagementTitleCards(): MutableList<HomeCardUI> {
         val managementTitles = mutableListOf(
-            resourceRepository.getString(R.string.warehouses),
-            resourceRepository.getString(R.string.stocks),
+            resourceRepository.getString(R.string.cities),
             resourceRepository.getString(R.string.products),
-            resourceRepository.getString(R.string.categories),
-            resourceRepository.getString(R.string.subcategories),
             resourceRepository.getString(R.string.packagings),
-            resourceRepository.getString(R.string.citites),
-            resourceRepository.getString(R.string.locations)
+            resourceRepository.getString(R.string.subcategories),
+            resourceRepository.getString(R.string.stocks),
+            resourceRepository.getString(R.string.warehouses),
         )
         return managementTitles.map {
             HomeCardUI(

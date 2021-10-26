@@ -31,4 +31,5 @@
     <color name="colorInputTextLayoutBackground">#BFEFEDED</color>
     <color name="colorCardTop">#ADB8FF</color>
     <color name="colorManagementCard">#F7F9FF</color>
+    <color name="colorFab">#777DD1</color>
 </resources>

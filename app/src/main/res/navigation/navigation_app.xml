@@ -6,6 +6,7 @@
     app:startDestination="@id/navigation_auth">
 
     <include app:graph="@navigation/navigation_auth" />
+    <include app:graph="@navigation/navigation_city" />
 
 
     <fragment

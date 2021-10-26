@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -94,8 +95,14 @@ abstract class AppFragment<VM : AppVM, ViewBinding : ViewDataBinding> : Fragment
         }
     }
 
-    override fun showLoader() {}
-    override fun hideLoader() {}
+    override fun showLoader() {
+        binding?.root?.findViewById<LoaderView>(R.id.loader)?.visibility = View.VISIBLE
+    }
+
+    override fun hideLoader() {
+        binding?.root?.findViewById<LoaderView>(R.id.loader)?.visibility = View.GONE
+
+    }
 
     override fun hideKeyboard() {
         val inputMethodManager =
